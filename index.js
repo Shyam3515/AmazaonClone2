@@ -1,10 +1,20 @@
 // Main Idea of JavaScript: 1)Save the data 2)Generate HTML 3)Make it Interactive...
 
+cartUpdate();
+function cartUpdate() {
+    //Get the cart quantity and put it on the page
+    let cartQuantity = 0;
+    cart.forEach((item) => {
+        cartQuantity++;
+    });
+    //Making cart quantity interactive
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
+
 // Adding products
 let productsHTML = '';
-
 products.forEach((product) => {
-    console.log(typeof(product.quantity))
+    console.log(product.quantity)
     productsHTML += `
     <div class="product-container">
         <div class="product-image-container">
@@ -18,7 +28,7 @@ products.forEach((product) => {
 
         <div class="product-rating-container">
         <img class="product-rating-stars"
-            src="images/ratings/rating-${product.rating.stars *10}.png">
+            src="images/ratings/rating-${product.rating.stars * 10}.png">
         <div class="product-rating-count link-primary">
             ${product.rating.count}
         </div>
@@ -66,54 +76,43 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 //Making add to cart interactive
 document.querySelectorAll('.js-add-to-cart')
-.forEach((button) => {
-    button.addEventListener('click', () => {
-        // onclick we need to add product to cart
-        //How do we know which product to add?
-         // => With Data Attribute
-          // It is just another HTML attribute.
-          // Allows us to attach any information to an element
-          //It has to start with 'data-' and we can give any name.Let's add it to Add-to-cart-button Element
+    .forEach((button) => {
+        button.addEventListener('click', () => {
+            // onclick we need to add product to cart
+            //How do we know which product to add?
+            // => With Data Attribute
+            // It is just another HTML attribute.
+            // Allows us to attach any information to an element
+            //It has to start with 'data-' and we can give any name.Let's add it to Add-to-cart-button Element
 
-          //dataset basically gives all the data attributes attached that are attached to this button
-          //to differentiate between two same product names but different brands, we are using Id's  
-          const productId = button.dataset.productId;
-          let productQuantity =  button.dataset.productQuantity;
+            //dataset basically gives all the data attributes attached that are attached to this button
+            //to differentiate between two same product names but different brands, we are using Id's  
+            const productId = button.dataset.productId;
+            let productQuantity = button.dataset.productQuantity;
 
-          let matchingItem;
-          cart.forEach((item) =>{
-            if(productId === item.productId){
-                matchingItem = item;
-            }
-          });
-
-          //If same item is present increase the product quantity
-          if(matchingItem){
-            matchingItem.quantity += 1;
-            button.dataset.productQuantity++;
-            saveData();
-          }else{
-            cart.push({
-                productId : productId,
-                quantity : 1
+            let matchingItem;
+            cart.forEach((item) => {
+                if (productId === item.productId) {
+                    matchingItem = item;
+                }
             });
-            cart1.push(button.dataset);
-            saveData();
-          }
-          
-          //Get the cart quantity and put it on the page
-          let cartQuantity = 0;
-          cart.forEach((item) =>{
-            cartQuantity +=item.quantity;
-          })
 
-        //Making cart quantity interactive
-        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+            //If same item is present increase the product quantity
+            if (matchingItem) {
+                alert('Item added to cart, Please update the required quantity..')
+                // button.dataset.productQuantity++;
+                // saveData();
+            } else {
+                cart.push(button.dataset);
+                saveData();
+            }
+            //Cart Update
+            cartUpdate()
+        });
     });
-});
 
 //local storage
-function saveData(){
-    localStorage.setItem('product',JSON.stringify(cart1));
-    // console.log("local: ",localStorage.getItem('product'))
+function saveData() {
+    localStorage.setItem('product', JSON.stringify(cart));
+    console.log("local: ", localStorage.getItem('product'))
 };

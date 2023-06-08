@@ -1,11 +1,6 @@
 let productHTML = '';
-let saveData = JSON.parse(localStorage.getItem('product'));
-if(Array.isArray(saveData)){
-    cart1 = saveData;
-};
-
-console.log(cart1)
-cart1.forEach((product) => {
+console.log(cart)
+cart.forEach((product) => {
   console.log(product.productQuantity)
     productHTML += `
     <div class="cart-item-container">
