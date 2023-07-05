@@ -1,4 +1,3 @@
-// const cart = [];
 let cart;
 //local storage
 function saveData() {
