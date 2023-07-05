@@ -104,6 +104,7 @@ document.querySelectorAll('.js-add-to-cart')
                 // saveData();
             } else {
                 cart.push(button.dataset);
+                // orders.push(button.dataset)
                 saveData();
             }
             //Cart Update
@@ -111,8 +112,5 @@ document.querySelectorAll('.js-add-to-cart')
         });
     });
 
-//local storage
-function saveData() {
-    localStorage.setItem('product', JSON.stringify(cart));
-    console.log("local: ", localStorage.getItem('product'))
-};
+
+
