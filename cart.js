@@ -25,17 +25,4 @@ function cartUpdate() {
 
 let orders = cart;
 
-//storing track order
-let track;
-function trackData() {
-    localStorage.setItem('track', JSON.stringify(track));
-    console.log("local: ", localStorage.getItem('track'))
-};
-let trackedData = JSON.parse(localStorage.getItem('track'));
-if(Array.isArray(trackedData)){
-    track = trackedData;
-}
-else{
-    track = [];
-}
 
