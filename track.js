@@ -1,15 +1,7 @@
-console.log(track)
-
-{/* <a href="tracking.html"> 
-                    <button class="track-package-button button-secondary">
-                        Track package
-                    </button>
-                </a> */}
-
+console.log(track);
 // Adding products
 let productsHTML = '';
 track.forEach((product) => {
-    console.log(product.quantity)
     productsHTML += `
     <div class="order-tracking">
         <a class="back-to-orders-link link-primary" href="orders.html">
