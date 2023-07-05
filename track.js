@@ -1,7 +1,11 @@
-console.log(track);
+// const trackID = +sessionStorage.getItem('trackID')
+// const trackProduct = cart.find((_,i) => i === trackID)
+
+const trackID = sessionStorage.getItem('trackID')
+const trackProduct = cart.find(el => el.productId === trackID)
+console.log("trackProduct",trackProduct,trackID,cart);
 // Adding products
 let productsHTML = '';
-track.forEach((product) => {
     productsHTML += `
     <div class="order-tracking">
         <a class="back-to-orders-link link-primary" href="orders.html">
@@ -13,14 +17,14 @@ track.forEach((product) => {
         </div>
 
         <div class="product-info">
-          ${product.productName}
+          ${trackProduct.productName}
         </div>
 
         <div class="product-info">
           Quantity: 1
         </div>
 
-        <img class="product-image" src=" ${product.productImg}">
+        <img class="product-image" src=" ${trackProduct.productImg}">
 
         <div class="progress-labels-container">
           <div class="progress-label">
@@ -39,6 +43,5 @@ track.forEach((product) => {
         </div>
       </div>
     `
-});
 //Adding to webPage
 document.querySelector('.main-orders').innerHTML = productsHTML;

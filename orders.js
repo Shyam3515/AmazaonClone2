@@ -70,11 +70,9 @@ document.querySelector('.orders-grid').innerHTML = productsHTML;
 document.querySelectorAll('.track-package-button')
 .forEach((trackButton,index) => {
     trackButton.addEventListener('click', () => {
-        const order = orders[index]
-        // console.log("index : ",index,order)
-        track[0] = order;
-        trackData();
-        console.log(order,track)
+        // sessionStorage.setItem("trackID",index);
+
+        sessionStorage.setItem("trackID",orders[index].productId);
     });
 });
 
