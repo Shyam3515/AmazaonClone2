@@ -1,0 +1,40 @@
+//Before Actual change used local storage to retrieve track Array.
+
+//Orders
+document.querySelectorAll('.track-package-button')
+.forEach((trackButton,index) => {
+    trackButton.addEventListener('click', () => {
+        const order = orders[index]
+        // console.log("index : ",index,order)
+        track[0] = order;
+        trackData();
+        console.log(order,track)
+    });
+});
+
+*****************************************************************
+//Track.js
+console.log(track);
+// Adding products
+let productsHTML = '';
+track.forEach((product) => {
+    productsHTML += `
+
+    `});
+document.querySelector('.main-orders').innerHTML = productsHTML;
+
+*****************************************************************
+//Cart 
+//storing track order
+let track;
+function trackData() {
+    localStorage.setItem('track', JSON.stringify(track));
+    console.log("local: ", localStorage.getItem('track'))
+};
+let trackedData = JSON.parse(localStorage.getItem('track'));
+if(Array.isArray(trackedData)){
+    track = trackedData;
+}
+else{
+    track = [];
+}
